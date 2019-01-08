@@ -1,3 +1,15 @@
+(* ************************************************************************** *)
+(*                                                                            *)
+(*                                                        :::      ::::::::   *)
+(*   ft_string_all.ml                                   :+:      :+:    :+:   *)
+(*                                                    +:+ +:+         +:+     *)
+(*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        *)
+(*                                                +#+#+#+#+#+   +#+           *)
+(*   Created: 2019/01/08 14:55:30 by rmonnier          #+#    #+#             *)
+(*   Updated: 2019/01/08 14:56:10 by rmonnier         ###   ########.fr       *)
+(*                                                                            *)
+(* ************************************************************************** *)
+
 let ft_string_all predicate str =
   let rec iterate predicate str index =
     let length = String.length str in
@@ -21,7 +33,5 @@ let main () =
   if (ft_string_all is_digit "allo123")
   then print_string "This is true for allo123\n"
   else print_string "This is false for allo123\n"
-  
-(* ************ *)
 
 let () = main ()
