@@ -16,8 +16,8 @@ let encode list =
         | _ -> 0
     in
     let rec loop list output = match list with
-        | [] -> output
-        | tete::queue when tete = output -> () 
+        | tete::queue -> loop 
+
     in
 
 let main () =
