@@ -1,29 +1,32 @@
 (* ************************************************************************** *)
 (*                                                                            *)
 (*                                                        :::      ::::::::   *)
-(*   repeat_x.ml                                        :+:      :+:    :+:   *)
+(*   encode.ml                                          :+:      :+:    :+:   *)
 (*                                                    +:+ +:+         +:+     *)
 (*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        *)
 (*                                                +#+#+#+#+#+   +#+           *)
-(*   Created: 2019/01/08 16:31:38 by rmonnier          #+#    #+#             *)
-(*   Updated: 2019/01/08 16:31:41 by rmonnier         ###   ########.fr       *)
+(*   Created: 2019/01/10 11:13:13 by rmonnier          #+#    #+#             *)
+(*   Updated: 2019/01/10 11:13:15 by rmonnier         ###   ########.fr       *)
 (*                                                                            *)
 (* ************************************************************************** *)
 
 let encode list =
-    let rec number_of_times list elem = match list with
-        | tete::queue when tete = elem -> 1 + (number_of_times queue elem)
-        | _ -> 0
+    let rec encode_aux list acc elem = match list with
+        | [] -> [(acc, elem)] 
+        | hd :: tl when hd = elem -> encode_aux tl (acc + 1) elem
+        | hd :: tl -> (acc, elem) :: encode_aux tl 1 hd
     in
-    let rec loop list output = match list with
-        | tete::queue -> loop 
+    match list with
+    | [] -> []
+    | hd :: tl -> encode_aux tl 1 hd
 
-    in
+let rec print_list list = match list with
+    | [] -> print_char '\n'
+    | (a, b) :: tl -> print_string " ("; print_int a; print_string ", "; print_char b; print_string ");"; print_list tl
 
 let main () =
-    print_endline (string_of_int (fibonacci (-42)));
-    print_endline (string_of_int (fibonacci 1));
-    print_endline (string_of_int (fibonacci 3));
-    print_endline (string_of_int (fibonacci 6))
+    print_list (encode ['a'; 'a'; 'b'; 'a'; 'c'; 'c']);
+    print_list (encode []);
+    print_list (encode ['a'])
 
 let () = main ()
