@@ -134,13 +134,11 @@ Records
 type etudiant = {
         nom : string;
         login : string;
-        etat
 }
 
 let marvin = {
         nom = "Marvin";
         login = "marvin";
-        etat = "deprime"
 }
 
 let () =
